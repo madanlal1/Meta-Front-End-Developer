@@ -1,0 +1,23 @@
+{
+  "name": "Meta-Front-End-Developer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lodash.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madanlal1/Meta-Front-End-Developer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/madanlal1/Meta-Front-End-Developer/issues"
+  },
+  "homepage": "https://github.com/madanlal1/Meta-Front-End-Developer#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
