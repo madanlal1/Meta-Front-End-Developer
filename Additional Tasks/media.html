@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- embed iframe -->
+    <h1>Embed iFrame</h1>
+    <center>
+        <iframe src="index.html" name="My Frame" sandbox="allow-modals" width="80%"></iframe>
+    </center>
+
+    <br><br>
+    
+    <!-- embed video (controlsList="nodownload" : this property works in only html) -->
+    <h1>Embed Video</h1>
+      <div class="embed-responsive embed-responsive-16by9"> 
+        <iframe class="embed-responsive-item" src="video.mp4" controls sandbox="autoplay" width="400px" height="225px" allowfullscreen></iframe>
+      </div>
+    
+      <br><br>
+
+      <!-- embed audio -->
+      <h1>Embed Audio</h1>
+        <audio src="video.mp3" type="audio/mp3" loop controls></audio>
+
+      
+
+    </body>
+</html>
