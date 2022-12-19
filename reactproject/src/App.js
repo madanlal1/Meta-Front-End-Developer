@@ -44,8 +44,51 @@ function App() {
   const update = () => {
     companyName == "Lemon" ? setCompanyName("Little Lemon") : setCompanyName("Lemon");
   }
+
+  const [data, setData] = useState({name: "", email : ""});
+  const [data2, setData2] = useState({name: "", email : ""});
+  const todo = (e) => {
+    // setTask(...Task, )
+    e.preventDefault();
+    // setTask({name: e.target.value});
+    setData2({name : e.target.name.value, email : e.target.email.value})
+    console.log(data);
+    // setData({name: "", email : ""});
+  }
+  
+  
+  
+  const [Task, setTask] = useState([]);
+  const ToDo = (e) => {
+    e.preventDefault();
+    setTask([...Task, e.target.Task.value]);
+  }
   return (
     <>
+    {/* use state complex TODO Simple App */}
+      <h1>ToDo List</h1>
+    <form onSubmit={ToDo}>
+      <input type="text" name="Task"/>
+      <button type='submit'>Submit</button> 
+    </form>
+      <ul>
+        {Task.map(val => {
+            return <li>{val}</li>
+        })}
+      </ul>
+
+<br/><br/>
+    {/* form using useState */}
+    <form onSubmit={todo}>
+      <label>Name : </label>
+      <input type="text" name='name' value={data.name} onChange={e => setData({...data, name : e.target.value})}/>
+      <label>Email : </label>
+      <input type="email" name='email' value={data.email} onChange={e => setData({...data, email : e.target.value})}/>
+      <input type='submit' value='submit'/> 
+    </form>
+    <h1>{data2.name}  {data2.email}</h1>
+
+
     {/* ////////////////////////////// map method */}
     {icons.map(item => {
       return item.src;
