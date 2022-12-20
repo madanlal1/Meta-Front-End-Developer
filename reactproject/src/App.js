@@ -1,4 +1,4 @@
-import {useState, useRef, createContext} from 'react';
+import {useState, useRef, createContext, useEffect} from 'react';
 import Practice from './Practice';
 
 let icons = [
@@ -63,8 +63,38 @@ function App() {
     e.preventDefault();
     setTask([...Task, e.target.Task.value]);
   }
+
+  {/* using useEffect to increase counter */}
+  let [count, setCount] = useState(0);
+  useEffect(() => {
+    if(count != 210) {
+      setCount(count+1);
+    }
+  },[count]);
+
   return (
     <>
+
+
+    {/* using useEffect to increase counter */}
+    <div className='counter'>
+      <h1>{count}</h1>
+    </div>
+    {/* ------------------------------- */}
+    <div className='counter'>
+      <h1>{count}</h1>
+    </div>
+    {/* ------------------------------- */}
+    <div className='counter'>
+      <h1>{count}</h1>
+    </div>
+    {/* ------------------------------- */}
+    <div className='counter'>
+      <h1>{count}</h1>
+    </div>
+    {/* ------------------------------- */}
+
+
     {/* use state complex TODO Simple App */}
       <h1>ToDo List</h1>
     <form onSubmit={ToDo}>
