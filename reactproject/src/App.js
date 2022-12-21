@@ -1,4 +1,4 @@
-import {useState, useRef, createContext, useEffect} from 'react';
+import {useState, useRef, createContext, useEffect, useReducer} from 'react';
 import Practice from './Practice';
 
 let icons = [
@@ -30,9 +30,7 @@ function App() {
     return <li>{data}</li>
   })
   
-  // use state initialization
-  const [counter, setCounter] = useState(0);
-  const [companyName, setCompanyName] = useState("Lemon");
+  
   // use ref
   const name = useRef("");
   
@@ -58,41 +56,84 @@ function App() {
   
   
   
+  const [companyName, setCompanyName] = useState("Lemon");
   const [Task, setTask] = useState([]);
   const ToDo = (e) => {
     e.preventDefault();
     setTask([...Task, e.target.Task.value]);
   }
 
-  {/* using useEffect to increase counter */}
-  let [count, setCount] = useState(0);
+  
+  
+  // fetch API Data
+  const [Resp, setResponse] = useState({});
   useEffect(() => {
-    if(count != 210) {
+
+    fetch("https://jsonplaceholder.typicode.com/users")
+            .then((response) => response.json())
+            .then((data) => setResponse(data))
+            .catch(err => console.log(err));
+  }, [])  
+
+
+  {/* using useEffect to increase counter */}
+  const [count, setCount] = useState(0);
+  
+  
+  useEffect(() => {
+    if(count != 810) {
       setCount(count+1);
     }
   },[count]);
 
-  return (
+  // use Reducer 
+  const reducer = (state, action) => {
+    if(action.type === 'increment') return {counter : state.counter+1}
+    if(action.type === 'decrement') return {counter : state.counter-1}
+    if(action.type === 'reset') return {counter : 0}
+  }
+
+  const initialState = {counter : 0};
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+
+
+  // -----------------------------------------------------------------------------------------------
+  return ( 
     <>
+
+    {/* ///////////////////////////// use state */}
+    <h1>{state.counter}</h1>
+    <button onClick={() => dispatch({type : 'increment'})}>Counter ++</button>
+    <button onClick={() => dispatch({type : 'decrement'})}>Counter - -</button>
+    <button onClick={() => dispatch({type : 'reset'})}>Reset</button>
+
 
 
     {/* using useEffect to increase counter */}
-    <div className='counter'>
-      <h1>{count}</h1>
+    <div className='row'>
+      <div className='col'>
+        <div className='counter'>
+          <h1>{count}</h1>
+        </div>
+      </div>
+      <div className='col'>
+        <div className='counter'>
+          <h1>{count}</h1>
+        </div>
+      </div>
+      <div className='col'>
+        <div className='counter'>
+          <h1>{count}</h1>
+        </div>
+      </div>
+      <div className='col'>
+        <div className='counter'>
+          <h1>{count}</h1>
+        </div>
+      </div>
     </div>
-    {/* ------------------------------- */}
-    <div className='counter'>
-      <h1>{count}</h1>
-    </div>
-    {/* ------------------------------- */}
-    <div className='counter'>
-      <h1>{count}</h1>
-    </div>
-    {/* ------------------------------- */}
-    <div className='counter'>
-      <h1>{count}</h1>
-    </div>
-    {/* ------------------------------- */}
+ 
 
 
     {/* use state complex TODO Simple App */}
@@ -117,6 +158,7 @@ function App() {
       <input type='submit' value='submit'/> 
     </form>
     <h1>{data2.name}  {data2.email}</h1>
+    <br/>
 
 
     {/* ////////////////////////////// map method */}
@@ -129,10 +171,6 @@ function App() {
       {myData}
     </ul>
 
-    {/* ///////////////////////////// use state */}
-    <h1>{counter}</h1>
-    <button onClick={() => setCounter(counter+1)}>Counter ++</button> <br/><br/>
-    <button onClick={() => setCounter(counter-1)}>Counter - -</button>
 
     <br/><br/>
 
@@ -154,6 +192,17 @@ function App() {
     <h1>{companyName}</h1>
     <button onClick={update}>Update Name</button>
 
+    {/* fetch API Data */}
+    <h2>Fetch API Data : </h2>
+    <ul>
+      {
+        Resp && Resp.length > 0 && Resp.map(
+          itm => {
+            return <li>{itm.name}</li>
+          }
+        )
+      }
+    </ul>
 
     </>
   );

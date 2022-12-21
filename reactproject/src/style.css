@@ -1,7 +1,12 @@
+body{
+    padding: 20px;
+    margin: 0px;
+}
+
 .counter {
-    width: 100px;
+    width: 150px;
     height: 100px;
-    border: 1px solid black;
+    border: 2px solid grey;
     display: grid;
     justify-content: center;
     align-items: center;
