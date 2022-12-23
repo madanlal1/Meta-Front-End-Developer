@@ -98,16 +98,24 @@ function App() {
 
 
 
+
+  // useRef stores a mutable value that does not cause a re-render when updated.
+  const count1 = useRef(0);
+
+  useEffect(() => {
+    count1.current = count1.current + 1;
+  });
+  console.log("count1 : ==> ",count1);
   // -----------------------------------------------------------------------------------------------
   return ( 
     <>
+
 
     {/* ///////////////////////////// use state */}
     <h1>{state.counter}</h1>
     <button onClick={() => dispatch({type : 'increment'})}>Counter ++</button>
     <button onClick={() => dispatch({type : 'decrement'})}>Counter - -</button>
     <button onClick={() => dispatch({type : 'reset'})}>Reset</button>
-
 
 
     {/* using useEffect to increase counter */}
