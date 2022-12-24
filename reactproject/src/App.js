@@ -19,6 +19,7 @@ let icons = [
   }
 ]
 
+
 // context
 const Name = createContext();
 
@@ -30,7 +31,7 @@ function App() {
     return <li>{data}</li>
   })
   
-  
+
   // use ref
   const name = useRef("");
   
